@@ -1,6 +1,16 @@
 <?php
 
-Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
+
+use App\Http\Controllers\Api\V1\ProductApiController;
+
+Route::group(['as' => 'api.'], function () {
+
+    Route::get('products', 'App\Http\Controllers\Api\V1\ProductApiController@index');
+});
+
+
+Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => [/*'auth:sanctum'*/]], function () {
+
     // Abilities
     Route::apiResource('abilities', 'AbilitiesController', ['only' => ['index']]);
 
